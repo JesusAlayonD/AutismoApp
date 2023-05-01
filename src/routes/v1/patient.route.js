@@ -46,6 +46,30 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
+router.put("/:id/test", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { test } = req.body;
+    const payload = await Patient.setTest(id, test);
+    const status = await http.status(payload);
+    res.status(status).json(payload);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put("/:id/doctor", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { doctor } = req.body;
+    const payload = await Patient.setDoctor(id, doctor);
+    const status = await http.status(payload);
+    res.status(status).json(payload);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.delete("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;

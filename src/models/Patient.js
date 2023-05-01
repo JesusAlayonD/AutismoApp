@@ -38,6 +38,14 @@ const patientSchema = new Schema(
       type: Number,
       required: true,
     },
+    doctor: {
+      type: Schema.Types.ObjectId,
+      ref: "Doctor",
+    },
+    test: {
+      type: Schema.Types.ObjectId,
+      ref: "Test",
+    },
     date_of_bith: { type: Date },
   },
   { timestamps: true }
