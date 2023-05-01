@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const JSCrypto = require("../utils/jscrypto");
 
-const patientSchema = new Schema(
+const doctorSchema = new Schema(
   {
     is_active: {
       type: Boolean,
@@ -26,9 +26,6 @@ const patientSchema = new Schema(
       minlength: [8, "password is very small"],
       required: true,
     },
-    result: {
-      type: String,
-    },
     sex: {
       type: String,
       enum: { values: ["F", "M"], message: "value not valid" },
@@ -38,12 +35,16 @@ const patientSchema = new Schema(
       type: Number,
       required: true,
     },
+    license: {
+      type: String,
+      default: "https://picsum.photos/200/300",
+    },
     date_of_bith: { type: Date },
   },
   { timestamps: true }
 );
 
-patientSchema.pre("save", async function (next) {
+doctorSchema.pre("save", async function (next) {
   try {
     const user = this;
     if (!user.isModified("password")) return next();
@@ -54,5 +55,5 @@ patientSchema.pre("save", async function (next) {
   }
 });
 
-const Patient = model("Patient", patientSchema, "Patients");
-module.exports = Patient;
+const Doctor = model("Doctor", doctorSchema, "Doctors");
+module.exports = Doctor;
