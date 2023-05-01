@@ -1,7 +1,5 @@
-const User = require("./User");
-const Token = require("./Token");
+const Patient = require("./Patient");
 
 module.exports = {
-  User,
-  Token,
+  Patient,
 };

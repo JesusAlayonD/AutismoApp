@@ -1,18 +1,11 @@
 const express = require("express");
 
-const router = express.Router();
+const patient = require("./patient.route");
 
-const auth = require("./auth.route");
+function routerApi(app) {
+  const router = express.Router();
+  app.use("/api/v1", router);
+  router.use("/patient", patient);
+}
 
-const mapNavigationUrls = [
-  {
-    path: "/auth",
-    route: auth,
-  },
-];
-
-mapNavigationUrls.forEach((item) => {
-  router.use(item.path, item.route);
-});
-
-module.exports = router;
+module.exports = routerApi;
