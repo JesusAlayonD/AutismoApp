@@ -30,7 +30,7 @@ const testSchema = new Schema(
       ref: "Patient",
     },
     answers: {
-      type: Array,
+      type: [String],
       default: [],
     },
   },

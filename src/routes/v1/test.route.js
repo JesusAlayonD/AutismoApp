@@ -34,6 +34,17 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
+router.put("/:id/answers", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const payload = await Test.addAnswer(id, req.body);
+    const status = await http.status(payload);
+    res.status(status).json(payload);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.delete("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;

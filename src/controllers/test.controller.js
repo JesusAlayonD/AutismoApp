@@ -29,6 +29,17 @@ class TestController {
     }
   }
 
+  async addAnswer(id, fields) {
+    try {
+      return await Test.updateOne(
+        { _id: id },
+        { $push: { answers: fields.answer } }
+      );
+    } catch (error) {
+      return error;
+    }
+  }
+
   async delete(id) {
     try {
       return await Test.deleteOne({ _id: id });
