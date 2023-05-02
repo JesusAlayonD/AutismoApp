@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const Doctor = require("../../controllers/doctor.controller");
+const Test = require("../../controllers/test.controller");
 const http = require("../../utils/httpresponse");
 
 router.get("/", async (req, res, next) => {
   try {
-    const payload = await Doctor.searchByQuery(req.query);
+    const payload = await Test.searchByQuery(req.query);
     const status = await http.status(payload);
     res.status(status).json(payload);
   } catch (error) {
@@ -13,20 +13,9 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.post("/signin", async (req, res, next) => {
-  try {
-    let fields = req.body;
-    const payload = await Doctor.signin(fields);
-    const status = await http.status(payload);
-    res.status(status).json(payload);
-  } catch (err) {
-    res.status(404).json(err);
-  }
-});
-
 router.post("/", async (req, res, next) => {
   try {
-    const payload = await Doctor.create(req.body);
+    const payload = await Test.create(req.body);
     const status = await http.status(payload);
     res.status(status).json(payload);
   } catch (error) {
@@ -37,7 +26,7 @@ router.post("/", async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const payload = await Doctor.update(id, req.body);
+    const payload = await Test.update(id, req.body);
     const status = await http.status(payload);
     res.status(status).json(payload);
   } catch (error) {
@@ -48,7 +37,7 @@ router.put("/:id", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const payload = await Doctor.delete(id, req.body);
+    const payload = await Test.delete(id, req.body);
     const status = await http.status(payload);
     res.status(status).json(payload);
   } catch (error) {

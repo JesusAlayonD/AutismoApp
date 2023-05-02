@@ -27,7 +27,6 @@ router.post("/signin", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const payload = await Patient.create(req.body);
-    // const payload = await User.create_user_inactive(req.body);
     const status = await http.status(payload);
     res.status(status).json(payload);
   } catch (error) {

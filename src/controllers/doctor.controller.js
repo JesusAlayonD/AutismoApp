@@ -1,7 +1,4 @@
 require("dotenv").config();
-const jwt = require("jsonwebtoken");
-const randtoken = require("rand-token");
-const datetime = require("../utils/datetime");
 
 const { Doctor } = require("../models/index");
 
