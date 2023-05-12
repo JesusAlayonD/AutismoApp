@@ -15,7 +15,6 @@ const doctorSchema = new Schema(
       type: String,
       required: true,
     },
-    username: { type: String, require: true },
     email: {
       type: String,
       required: "email is required",
@@ -28,11 +27,7 @@ const doctorSchema = new Schema(
     },
     sex: {
       type: String,
-      enum: { values: ["F", "M"], message: "value not valid" },
-      required: true,
-    },
-    age: {
-      type: Number,
+      enum: { values: ["F", "M", "Other"], message: "value not valid" },
       required: true,
     },
     license: {
