@@ -38,7 +38,7 @@ class PatientController {
       if (user.length == 0) {
         user = await Patient.create(fields);
       } else {
-        user = user[0];
+        user = {};
       }
       return user;
     } catch (error) {

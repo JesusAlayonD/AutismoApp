@@ -40,7 +40,7 @@ class DoctorController {
       if (user.length == 0) {
         user = await Doctor.create(fields);
       } else {
-        user = user[0];
+        user = {};
       }
       return user;
     } catch (error) {
