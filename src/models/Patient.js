@@ -46,6 +46,10 @@ const patientSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Test",
     },
+    finished: {
+      type: Boolean,
+      default: false,
+    },
     date_of_bith: { type: Date },
   },
   { timestamps: true }

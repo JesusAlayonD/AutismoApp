@@ -1,12 +1,11 @@
 require("dotenv").config();
 
 const { Patient } = require("../models/index");
+const JSCrypto = require("../utils/jscrypto");
 
 class PatientController {
   async searchByQuery(fields) {
     try {
-      fields.hasOwnProperty("_id") &&
-        (fields._id = new mongoose.Types.ObjectId(fields._id));
       return await Patient.find(fields);
     } catch (error) {
       return error;
@@ -15,6 +14,7 @@ class PatientController {
 
   async signin(fields) {
     let response = {};
+    fields.password = await JSCrypto.encrypt(fields.password);
     try {
       let user = await Patient.findOne({
         email: fields.email,

@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const { Doctor } = require("../models/index");
+const JSCrypto = require("../utils/jscrypto");
 
 class DoctorController {
   async searchByQuery(fields) {
@@ -15,6 +16,7 @@ class DoctorController {
 
   async signin(fields) {
     let response = {};
+    fields.password = await JSCrypto.encrypt(fields.password);
     try {
       let user = await Doctor.findOne({
         email: fields.email,

@@ -11,7 +11,11 @@ const testSchema = new Schema(
       type: String,
       required: true,
     },
-    points: {
+    pointsY: {
+      type: Number,
+      default: 0,
+    },
+    pointsN: {
       type: Number,
       default: 0,
     },

@@ -5,8 +5,6 @@ const { Test } = require("../models/index");
 class TestController {
   async searchByQuery(fields) {
     try {
-      fields.hasOwnProperty("_id") &&
-        (fields._id = new mongoose.Types.ObjectId(fields._id));
       return await Test.find(fields);
     } catch (error) {
       return error;
