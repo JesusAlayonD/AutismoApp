@@ -69,6 +69,17 @@ router.put("/:id/doctor", async (req, res, next) => {
   }
 });
 
+router.put("/delete/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const payload = await Patient.deleteTest(id);
+    const status = await http.status(payload);
+    res.status(status).json(payload);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.delete("/:id", async (req, res, next) => {
   try {
     const { id } = req.params;

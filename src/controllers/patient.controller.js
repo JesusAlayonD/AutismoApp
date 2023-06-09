@@ -54,6 +54,14 @@ class PatientController {
     }
   }
 
+  async deleteTest(id) {
+    try {
+      return await Patient.updateOne({ _id: id }, { $unset: { test: 1 } });
+    } catch (error) {
+      return error;
+    }
+  }
+
   async setDoctor(id, idD) {
     try {
       return await Patient.updateOne({ _id: id }, { $set: { doctor: idD } });
