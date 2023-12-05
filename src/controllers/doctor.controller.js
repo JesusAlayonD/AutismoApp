@@ -23,6 +23,7 @@ class DoctorController {
         is_active: true,
       });
       if (user.id) {
+        console.log(JSCrypto.decrypt(user.password));
         if (fields.password === user.password) {
           delete user._doc.password;
           return user;
